@@ -1,7 +1,7 @@
 import os
 import asyncio
 import datetime
-from aiogram import Dispatcher, Bot, executor
+from aiogram import Dispatcher, Bot, executor # 2.5.1 version, 3 is a trash
 from get_image import url
 
 # Put your values in a virtual environment
