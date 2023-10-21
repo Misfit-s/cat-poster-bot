@@ -9,6 +9,7 @@ from get_image import url
 token = str(os.getenv("TELEGRAM_BOT_TOKEN"))
 channel_id = int(str(os.getenv("CHANNEL_ID")))
 
+time.sleep(5)
 bot = Bot(token)
 dp = Dispatcher(bot)
 
@@ -29,5 +30,4 @@ async def scheduler():
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     loop.create_task(scheduler())
-    time.sleep(5)
     executor.start_polling(dp, skip_updates=True)
