@@ -1,6 +1,7 @@
 import os
 import asyncio
 import datetime
+import time
 from aiogram import Dispatcher, Bot, executor # 2.5.1 version, 3 is a trash
 from get_image import url
 
@@ -28,4 +29,5 @@ async def scheduler():
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     loop.create_task(scheduler())
+    time.sleep(5)
     executor.start_polling(dp, skip_updates=True)
