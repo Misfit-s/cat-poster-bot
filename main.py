@@ -9,6 +9,7 @@ from get_image import url
 token = str(os.getenv("TELEGRAM_BOT_TOKEN"))
 channel_id = int(str(os.getenv("CHANNEL_ID")))
 
+print("sleep to prevent bugs")
 time.sleep(5)
 bot = Bot(token)
 dp = Dispatcher(bot)
