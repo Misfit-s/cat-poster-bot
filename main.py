@@ -14,6 +14,7 @@ channel_id = int(str(os.getenv("CHANNEL_ID")))
 
 logging.debug("sleep to prevent bugs")
 time.sleep(5)
+
 bot = Bot(token)
 dp = Dispatcher(bot)
 logging.info("bot object is created")
@@ -30,7 +31,12 @@ async def scheduler():
     while True:
         now = datetime.datetime.now()
         if now.minute == 19:
-            await send_post()
+            try:
+                await send_post()
+
+            except Exception as e:
+                print(e)
+                await send_post()
 
         await asyncio.sleep(60) # To prevent spam 
 
