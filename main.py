@@ -14,7 +14,7 @@ token = str(os.getenv("TELEGRAM_BOT_TOKEN"))
 channel_id = int(str(os.getenv("CHANNEL_ID")))
 
 logger.debug("sleep to prevent bugs")
-time.sleep(5)
+time.sleep(10)
 
 bot = Bot(token)
 dp = Dispatcher(bot)
@@ -34,15 +34,15 @@ async def scheduler():
         if now.minute == 19:
             try:
                 await send_post()
+                await asyncio.sleep(60) # To prevent spam 
 
             except Exception as e:
                 logger.error(e)
                 await send_post()
 
-        await asyncio.sleep(60) # To prevent spam 
 
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     loop.create_task(scheduler())
-    time.sleep(5)
+    time.sleep(10)
     executor.start_polling(dp, skip_updates=True)
