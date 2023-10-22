@@ -7,24 +7,25 @@ from aiogram import Dispatcher, Bot, executor # 2.5.1 version, 3 is a trash
 from get_image import url
 
 logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Put your values in a virtual environment
 token = str(os.getenv("TELEGRAM_BOT_TOKEN"))
 channel_id = int(str(os.getenv("CHANNEL_ID")))
 
-logging.debug("sleep to prevent bugs")
+logger.debug("sleep to prevent bugs")
 time.sleep(5)
 
 bot = Bot(token)
 dp = Dispatcher(bot)
-logging.info("bot object is created")
+logger.info("bot object is created")
 
 async def send_post():
 
     cat_url = str(url())
     await bot.send_photo(channel_id, cat_url)
-    logging.info(f"bot sended a {cat_url} pic.")
-    logging.info(f"bot is going to sleep.")
+    logger.info(f"bot sended a {cat_url} pic.")
+    logger.info(f"bot is going to sleep.")
 
 
 async def scheduler(): 
@@ -35,7 +36,7 @@ async def scheduler():
                 await send_post()
 
             except Exception as e:
-                print(e)
+                logger.error(e)
                 await send_post()
 
         await asyncio.sleep(60) # To prevent spam 
