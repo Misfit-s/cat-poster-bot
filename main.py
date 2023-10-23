@@ -37,7 +37,7 @@ async def scheduler():
                 await asyncio.sleep(60) # To prevent spam 
 
             except Exception as e:
-                logger.error(e)
+                logger.error("bot is catched an error: ", e)
                 await send_post()
 
 
