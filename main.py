@@ -9,6 +9,10 @@ from get_image import url
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+line_length = 100
+line = "~" * line_length
+
+
 # Put your values in a virtual environment
 token = str(os.getenv("TELEGRAM_BOT_TOKEN"))
 channel_id = int(str(os.getenv("CHANNEL_ID")))
@@ -18,13 +22,14 @@ time.sleep(10)
 
 bot = Bot(token)
 dp = Dispatcher(bot)
-logger.info("bot object is created")
+os.system('clear')
 
+logger.info("bot object is created")
 async def send_post():
 
     cat_url = str(url())
     await bot.send_photo(channel_id, cat_url)
-    logger.info(f"bot sended a {cat_url} pic.")
+    logger.info(f"bot is sended a {cat_url} pic.")
     logger.info(f"bot is going to sleep.")
 
 
@@ -37,7 +42,8 @@ async def scheduler():
                 await asyncio.sleep(60) # To prevent spam 
 
             except Exception as e:
-                logger.error("bot is catched an error: ", e)
+                logger.info('\n' + line + '\n' + "bot is cached an error: "
+                    + str(e) + '\n' + line)
                 await send_post()
 
 
